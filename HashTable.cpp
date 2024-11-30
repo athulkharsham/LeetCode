@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 #include <unordered_set>
+#include <algorithm>
 
 using namespace std;
 
@@ -229,8 +230,37 @@ vector<vector<int>> findPairs(const vector<int>& arr1, const vector<int>& arr2, 
     return result;
 }
 
+// {2, 1, 6, 9, 4, 3}
+// {1, 2, 3, 4}
+// length 4
+
+int longestConsecutiveSequence(const vector<int>& nums) {
+    unordered_set<int> numSet(nums.begin(), nums.end());
+    int longestStreak = 0;
+ 
+    for (int num : numSet) {
+        if (numSet.find(num - 1) == numSet.end()) {
+            int currentNum = num;
+            int currentStreak = 1;
+ 
+            while (numSet.find(currentNum + 1) != numSet.end()) {
+                currentNum++;
+                currentStreak++;
+            }
+ 
+            longestStreak = max(longestStreak, currentStreak);
+        }
+    }
+ 
+    return longestStreak;
+}
+
+
 int main() {
     
+    vector<int> nums{2, 1, 6, 9, 4, 3};
+    // cout << longestConsecutiveSequence(nums) << endl;
+
     return 0;
 }
 
