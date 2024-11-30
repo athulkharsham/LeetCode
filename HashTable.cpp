@@ -2,6 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include <bits/stdc++.h>
+#include <unordered_set>
 
 using namespace std;
 
@@ -176,6 +177,53 @@ vector<int> twoSum(const vector<int>& nums, int target)
             result.push_back(myMap[target-i]);
             result.push_back(i);
             return result;
+        }
+    }
+    return result;
+}
+
+// nums: {1, 2, 3, 4, 5}
+// target: 9
+// result = {1, 3}
+vector<int> subarraySum(const vector<int>& nums, int target)
+{
+    unordered_map<int, int> sumIndex;
+    sumIndex[0] = -1;
+    int currentSum = 0;
+    for(int i=0; i<nums.size(); i++)
+    {
+        if(sumIndex.find(currentSum-target) != sumIndex.end())
+        {
+            return {sumIndex[currentSum-target], i};
+        }
+        else
+        {
+            sumIndex[currentSum] = i;
+        }
+    }
+    return {};
+}
+
+// arr1{1, 2, 3};
+// arr2{4, 5, 6}
+// target = 8
+//result = {{2, 6}, {3, 5}}
+
+vector<vector<int>> findPairs(const vector<int>& arr1, const vector<int>& arr2, int target) 
+{
+    unordered_set<int> mySet;
+    for(auto item:arr1)
+    {
+        mySet.insert(item);
+    }
+    
+    vector<vector<int>> result;
+    for(int i = 0; i < arr2.size(); i++)
+    {
+        auto it = mySet.find(target - arr2[i]);
+        if( it!= mySet.end())
+        {
+            result.push_back({*it, i});
         }
     }
     return result;
