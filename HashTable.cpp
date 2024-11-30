@@ -160,21 +160,28 @@ vector<vector<string>> groupAnagrams(const vector<string>& strings) {
     return result;
 }
 
+vector<int> twoSum(const vector<int>& nums, int target)
+{
+    unordered_map<int, int> myMap;
+
+    vector<int> result;
+    for(int i =0; i < nums.size(); i++)
+    {
+        if(myMap.find(target- nums[i]) == myMap.end())
+        {
+            myMap[nums[i]] = i;
+        }
+        else
+        {
+            result.push_back(myMap[target-i]);
+            result.push_back(i);
+            return result;
+        }
+    }
+    return result;
+}
 
 int main() {
-
-    // vector<int> nums{1, 2, 3, 4, 4, 5, 5, 6, 7, 8};
-    // vector<int> result = findDuplicates(nums);
-    // cout << "{ ";
-    // for(const auto item:result)
-    // {
-    //     cout << item << " ";
-    // }
-    // cout << "}";
-    // cout << endl;
-    // string input_string{"aabbcc"};
-    // cout << firstNonRepeatingChar(input_string);
-    string strings[] = {"eat", "tea", "tan", "ate", "nat", "bat"};
     
     return 0;
 }
