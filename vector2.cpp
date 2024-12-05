@@ -105,6 +105,49 @@ int removeDuplicates(vector<int>& nums)
     }
     return writePinter; 
 }
+// rotate for k =2
+// {1, 2, 3, 4, 5, 6}
+// reverse first part until k
+// {4, 3, 2, 1, 5, 6}
+// reverse part from rotation to end
+// {4, 3, 2, 1, 6, 5}
+// reverse entire array
+// {5, 6, 1, 2 , 3, 4}
+
+void rotate(vector<int>& nums, int k)
+{
+    if(nums.empty())
+    {
+        return;
+    }
+    k = k % nums.size();
+
+    // reverse until k
+    for(int start=0, end=nums.size()-k-1; start < end; start++, end--)
+    {
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+    }
+
+    // reverse from k to end
+    for(int start =k, end = nums.size()-1; start < end; start++, end--)
+    {
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+    }
+
+    // reverse whole array
+    for(int start =k, end = nums.size()-1; start < end; start++, end--)
+    {
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+    }
+
+}
+
 
 int main()
 {
