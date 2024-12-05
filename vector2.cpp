@@ -148,6 +148,28 @@ void rotate(vector<int>& nums, int k)
 
 }
 
+/*
+Input:
+nums: [-2,1,-3,4,-1,2,1,-5,4]
+Output:
+6
+*/
+
+int maxSubarray(vector<int>& nums) {
+    if (nums.size() == 0) {
+        return 0;
+    }
+ 
+    int maxSum = nums[0];
+    int currentSum = nums[0];
+ 
+    for (int i = 1; i < nums.size(); i++) {
+        currentSum = max(nums[i], currentSum + nums[i]);
+        maxSum = max(maxSum, currentSum);
+    }
+ 
+    return maxSum;
+}
 
 int main()
 {
