@@ -61,6 +61,21 @@ void display_vector(const vector<int> &v)
     cout <<endl;
 }
 
+
+string findLongestString(vector<string>& stringList)
+{
+    string longestString = "";
+
+    for(const string &str : stringList)
+    {
+        if(str.length() > longestString.length())
+        {
+            longestString = str;
+        }
+    }
+    return longestString;
+}
+
 int main()
 {
     vector<int> vect{3, 2, 3, 6, 3, 4, 5, 3};
@@ -69,9 +84,11 @@ int main()
 
     // removeElement(vect, 3);
 
-    vector<int> maxMin{3, 7, 2, 9, 5};
-    auto result = findMaxMin(maxMin);
-    display_vector(result);
+    // vector<int> maxMin{3, 7, 2, 9, 5};
+    // auto result = findMaxMin(maxMin);
+
+
+    // display_vector(result);
 
     return 0;
 }
