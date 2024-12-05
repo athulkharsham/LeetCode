@@ -76,6 +76,36 @@ string findLongestString(vector<string>& stringList)
     return longestString;
 }
 
+
+/*
+Input:
+nums: [1,1,2,2,2,3,4,4]
+Output:
+5
+Modified nums:
+[1,2,3,4,X,X,X,X] (where X can be any number since it's beyond the new length)
+*/
+
+int removeDuplicates(vector<int>& nums)
+{
+    if(nums.size() < 1)
+    {
+        return 0;
+    }
+
+    int writePinter = 1;
+
+    for(int readPointer =1; readPointer < nums.size(); readPointer++)
+    {
+        if(nums[readPointer] != nums[readPointer -1])
+        {
+            nums[writePinter] = nums[readPointer];
+            writePinter++;
+        }
+    }
+    return writePinter; 
+}
+
 int main()
 {
     vector<int> vect{3, 2, 3, 6, 3, 4, 5, 3};
